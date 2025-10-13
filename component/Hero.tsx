@@ -10,7 +10,7 @@ export default function Hero() {
   if((pathname.split("/").length-1)==2) return null
   return (
     <div className='my-5'>
-      <div className='flex justify-between gap-8'>
+      <div className='flex justify-between gap-8 flex-col lg:flex-row'>
         <Feature/>
         <SliderComp/>
       </div>
