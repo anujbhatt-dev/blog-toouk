@@ -1,17 +1,21 @@
 import axios from "axios";
-import { CategorySchema } from "./types";
+import { CategorySchema, PostSchema } from "./types";
 
 
 
 
 // utils/data.ts
 
-const API_URL =
-  "https://public-api.wordpress.com/wp/v2/sites/tooukmarket.wordpress.com/categories";
+const CATEGORY_ENDPOINT =
+  `${process.env.NEXT_PUBLIC_API_URL}/categories`;
+
+  const POSTS_ENDPOINT =
+  `${process.env.NEXT_PUBLIC_API_URL}/posts`;  
 
 export const fetchCategories = async (): Promise<CategorySchema[]> => {
+  console.log("fetching categories");
   try {
-    const res = await axios.get<CategorySchema[]>(API_URL);
+    const res = await axios.get<CategorySchema[]>(CATEGORY_ENDPOINT);
     // Axios automatically infers type from <CategorySchema[]>
 
     // Map and filter to ensure we only return expected fields
@@ -29,9 +33,35 @@ export const fetchCategories = async (): Promise<CategorySchema[]> => {
 };
 
 
+export const fetchPosts = async (): Promise<PostSchema[]> => {
+  console.log("fetching posts");
+  
+  try {
+    const res = await axios.get<PostSchema[]>(POSTS_ENDPOINT);
+    // Axios automatically infers type from <CategorySchema[]>
+    
 
-  export 
-  const demoArticles = [
+    // Map and filter to ensure we only return expected fields
+    const filteredData: PostSchema[] = res.data.map((item:any) => ({
+      id: item.id,
+      title: item.title.rendered,
+      slug: item.slug,
+      description:item.yoast_head_json.og_description,
+      image:item.yoast_head_json.og_image[0].url,
+      category:item.class_list.at(-1).split("-")[1],
+      date:item.date.split("T")[0]
+    }));
+
+    return filteredData;
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    return []; // fallback to empty array
+  }
+};
+
+
+
+  export  const demoArticles = [
     {
       id: "1",
       title: "How Tokenization Is Changing Real Estate",

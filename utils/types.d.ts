@@ -4,6 +4,17 @@ export type CategorySchema = {
     slug: string;
   };
 
+  export type PostSchema = {
+    id: number;
+    title: string;
+    slug: string;
+    description:string;
+    category:string;
+    image:string;
+    date:string;
+  };
+
+
 export type WPPost = {
     id: number;
     slug: string;

@@ -20,18 +20,21 @@ export const metadata: Metadata = {
   description: "Toouk Market Blogs",
 };
 
-export default function RootLayout({
-  children,
+export default  function RootLayout({
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
-    <html  lang="en">
+    <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased max-w-6xl mx-2 lg:mx-auto  pt-18`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased max-w-6xl mx-6 lg:mx-auto pt-18`}
       >
         <Provider>
-         {children}
+          <Hero />
+          <Categories />
+          {children}
         </Provider>
       </body>
     </html>

@@ -1,14 +1,15 @@
 import ArticlesGrid from "@/component/ArticlesGrid";
 import Categories from "@/component/Categories";
 import Hero from "@/component/Hero";
+import { fetchPosts } from "@/utils/data";
 
-export default function Home() {
-
+export default async function Home() {
+  const posts = await fetchPosts();
+  if(!posts) return null
   return (
     <div className="min-h-screen">
-        <Hero/>
-        <Categories selected="all" />
-        <ArticlesGrid/>
+        
+        <ArticlesGrid posts={posts}/>
     </div>
   );
 }

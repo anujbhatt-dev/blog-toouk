@@ -10,7 +10,7 @@ import Image from "next/image";
 export default function TopBar() {
   const router = useRouter()
   return (
-    <header className="fixed top-0 left-0 right-0 w-full dark:bg-[#020826] bg-white shadow-md px-4 py-2  flex items-center justify-end lg:justify-between dark:border-b border-neutral-800/90 z-50 h-16">
+    <header className="fixed top-0 left-0 right-0 w-full dark:bg-[#020826]/40 bg-white shadow-md max-w-7xl mx-0 lg:mx-auto py-2 px-6 lg:px-12  flex items-center justify-between dark:border-b border-x rounded-lg border-neutral-800/50 z-50 h-16 backdrop-blur-lg">
       <motion.h1
         onClick={()=>{router.push("/")}}
         initial="rest"
@@ -55,12 +55,9 @@ export default function TopBar() {
           UK
         </motion.span>
       </motion.h1>
-        <nav className="hidden ml-16 lg:flex justify-center items-center gap-6 text-sm  dark:text-neutral-300 font-semibold">
-            <Link href="https://toouk.market" target="blank" className="transition-all duration-150 hover:text-zinc-500 dark:hover:text-white">
+        <nav className="flex justify-center items-center gap-6 text-sm  dark:text-neutral-400 font-semibold">
+            <Link href="https://toouk.market" target="blank" className="transition-all duration-150 dark:text-blue-500 hover:text-blue-400 dark:hover:text-blue-400">
                 Marketplace
-            </Link>
-            <Link href="" className="transition-all duration-150 hover:text-zinc-500 dark:hover:text-white">
-                Trading
             </Link>
             <Link href="" className="transition-all duration-150 hover:text-zinc-500 dark:hover:text-white">
                 Learning

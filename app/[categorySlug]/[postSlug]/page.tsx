@@ -1,9 +1,8 @@
 import axios from "axios";
 import Image from "next/image";
 
-export default async function Home({params}:{params:Promise<{categorySlug:string,postSlug:string}>}) {
-  const {categorySlug, postSlug} = await params  
-  console.log(categorySlug,postSlug);
+export default async function Home({params}:{params:Promise<{postSlug:string}>}) {
+  const {postSlug} = await params  
 
   const fetchPostdata:any = await axios.get("https://api-blog.toouk.market/index.php?rest_route=/wp/v2/posts&slug="+postSlug)
   
@@ -15,6 +14,7 @@ export default async function Home({params}:{params:Promise<{categorySlug:string
                 {fetchPostdata.data[0].title.rendered}
                 </h1>
                 <Image 
+                    priority
                     src={fetchPostdata.data[0].yoast_head_json.og_image[0].url}
                     width={1920}
                     height={1000}

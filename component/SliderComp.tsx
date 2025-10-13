@@ -4,6 +4,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick'
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { PostSchema } from "@/utils/types";
+import { fetchPosts } from "@/utils/data";
+import Link from "next/link";
 
 
 
@@ -16,61 +20,92 @@ export default function SliderComp() {
     slidesToScroll: 1,
     arrows:false,
     autoPlay:true,
-    autoplaySpeed: 1000
+    autoplaySpeed: 1000,
+    useCss:true
   };
-  return (
-    <div className="bg-zinc-900 rounded-lg p-2 lg:p-8 lg:pb-8 my-20 " >
-      <div>
 
-        <Slider {...settings}>
-        <div>
-                <Image
-                  src={"/b1.png"}
-                  alt={"alt"}
-                  width={160}
-                  height={160}
-                  className="w-130 h-auto object-cover rounded-xl lg:float-left lg:mr-10"
-                  />
-                <div className="py-4 flex flex-col gap-3">
-                  <span className="text-[10px] uppercase tracking-wide bg-neutral-800 mt-2 px-4 py-2 rounded-lg self-start">
-                    Announcement
-                  </span>
-                  <h3 className="text-white font-semibold text-sm sm:text-base">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus, necessitatibus? Provident
-                  </h3>
-                  <p className="text-neutral-400 text-xs line-clamp-2">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, deserunt. Et quia reprehenderit amet odio, sint enim magnam aliquid iste odit provident architecto quasi eum aut cum! Eveniet, consequatur sit rerum molestiae commodi molestias eaque, nesciunt dignissimos quasi quo similique!
-                  </p>
-                  <span className="text-[10px] uppercase tracking-wide text-neutral-500 mt-2">
-                    2025-10-12
-                  </span>
-                </div>
+  const [featured,setFeatured] = useState<PostSchema[] | null>(null)
+  const [loading,setLoading] = useState<boolean>(true)
+
+
+  useEffect(()=>{
+      const fetchdata = async () => {
+
+        try {
+          setFeatured(await fetchPosts())
+        } catch (error) {
+          console.log(error);
+          
+        } finally{
+          setLoading(false)
+        }
+      }
+      fetchdata()
+  },[])
+
+  return (
+    <div className="rounded-lg my-10" >
+      {
+        loading && <div>
+          <div className="h-[60vh]  lg:h-[50vh]">
+            <div className="flex flex-col lg:flex-row animate-pulse">
+              <div className="w-full lg:w-2/3">
+                <div className="w-full h-[150px] lg:h-[250px] bg-neutral-800 rounded-xl"></div>
+              </div>
+
+              <div className="px-4 flex flex-col gap-3 mt-4 lg:mt-0 lg:ml-10 w-full">
+                <div className="w-20 h-6 bg-neutral-800 rounded-lg"></div>
+
+                <div className="w-3/4 h-8 bg-neutral-800 rounded"></div>
+                <div className="w-full h-4 bg-neutral-800 rounded"></div>
+                <div className="w-5/6 h-4 bg-neutral-800 rounded"></div>
+
+                <div className="w-16 h-3 bg-neutral-700 rounded mt-2"></div>
+              </div>
+            </div>
+
           </div>
-          <div>
-                <Image
-                  src={"/b2.png"}
-                  alt={"alt"}
-                  width={160}
-                  height={160}
-                  className="w-100 h-60 object-cover rounded-xl lg:float-left lg:mr-10"
-                  />
-                <div className="py-4 flex flex-col gap-3">
-                  <span className="text-[10px] uppercase tracking-wide bg-neutral-800 mt-2 px-4 py-2 rounded-lg self-start">
-                    Announcement
-                  </span>
-                  <h3 className="text-white font-semibold text-sm sm:text-base">
-                    Lelit. Doloribus, necessitatibus? Provident
-                  </h3>
-                  <p className="text-neutral-400 text-xs line-clamp-2">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, deserunt. Et quia reprehenderit amet odio, sint enim magnam aliquid iste odit provident architecto quasi eum aut cum! Eveniet, consequatur sit rerum molestiae commodi molestias eaque, nesciunt dignissimos quasi quo similique!
-                  </p>
-                  <span className="text-[10px] uppercase tracking-wide text-neutral-500 mt-2">
-                    2025-10-12
-                  </span>
-                </div>
-          </div>
+        </div>
+      }  
+      {!loading &&
+      <div className="h-[60vh] lg:h-[50vh]">
+          <Slider {...settings}>
+        {featured?.slice(0,4).map((article)=>{
+          return <Link 
+              href={`/${article.category}/${article.slug}`}
+          >
+                  <Image
+                    priority
+                    src={article.image}
+                    alt={"alt"}
+                    width={1920}
+                    height={1000}
+                    className="w-130 h-auto object-cover rounded-xl lg:float-left lg:mr-10 "
+                    />
+                  <div className="px-4 flex flex-col gap-3">
+                    <span className="text-[10px] uppercase tracking-wide bg-neutral-800 mt-2 px-4 py-2 rounded-lg self-start text-white font-semibold">
+                      {article.category}
+                    </span>
+                    <h3 className="text-white font-semibold text-sm lg:text-3xl">
+                      {article.title}
+                    </h3>
+                    <p className="text-neutral-400 text-xs lg:text-sm line-clamp-2">
+                      {article.description}
+                    </p>
+                    <span className="text-[10px] uppercase tracking-wide text-neutral-500 mt-2">
+                      {article.date}
+                    </span>
+                  </div>
+            </Link>
+        })
+        
+        }
+          
+        
         </Slider>
+        
       </div>
+    }
 
     </div>
   )

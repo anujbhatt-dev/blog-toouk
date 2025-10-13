@@ -4,21 +4,25 @@ import useCategoryState from "@/store/categoryStore";
 import { demoArticles } from "@/utils/data";
 import Image from "next/image";
 import Link from "next/link";
+import { PostSchema } from "@/utils/types";
 
 
-export default function ArticlesGrid() {
+export default function ArticlesGrid({posts}:{posts:PostSchema[]}) {
   const { selected } = useCategoryState();
 
   const filtered =
     selected === "all"
-      ? demoArticles
-      : demoArticles.filter((a) => a.category === selected);
+      ? posts
+      : posts.filter((a) => a.category === selected);
+
+
+
 
   return (
     <div className="w-full my-10">
       {filtered.length === 0 ? (
-        <p className="text-neutral-400 text-sm text-center">
-          No articles available for this category.
+        <p className="text-neutral-300 text-sm text-center h-[60vh] bg-zinc-900/40 rounded-lg flex justify-center items-center">
+          No articles available for this category
         </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -42,11 +46,11 @@ export default function ArticlesGrid() {
                 <h3 className="text-white font-semibold text-sm sm:text-base">
                   {article.title}  
                 </h3>
-                <p className="text-neutral-400 text-xs line-clamp-2">
+                <p className="text-neutral-300 text-xs line-clamp-2">
                   {article.description}
                 </p>
                 <span className="text-[10px] uppercase tracking-wide text-neutral-500 mt-2">
-                  2025-10-12
+                  {article.date}
                 </span>
               </div>
             </Link>
