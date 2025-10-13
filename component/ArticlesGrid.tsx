@@ -3,6 +3,7 @@ import React from "react";
 import useCategoryState from "@/store/categoryStore";
 import { demoArticles } from "@/utils/data";
 import Image from "next/image";
+import Link from "next/link";
 
 
 export default function ArticlesGrid() {
@@ -22,7 +23,8 @@ export default function ArticlesGrid() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((article) => (
-            <div
+            <Link
+              href={`/${article.category}/${article.slug}`}
               key={article.id}
               className="hover:bg-neutral-900 rounded-xl overflow-hidden shadow hover:shadow-lg hover:scale-[1.02] transition-all duration-200  p-4"
             >
@@ -47,7 +49,7 @@ export default function ArticlesGrid() {
                   2025-10-12
                 </span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       )}

@@ -12,7 +12,7 @@ export default function TopBar() {
   return (
     <header className="fixed top-0 left-0 right-0 w-full dark:bg-[#020826] bg-white shadow-md px-4 py-2  flex items-center justify-end lg:justify-between dark:border-b border-neutral-800/90 z-50 h-16">
       <motion.h1
-        onClick={()=>{router.push("/landing")}}
+        onClick={()=>{router.push("/")}}
         initial="rest"
         whileHover="hover"
         animate="rest"

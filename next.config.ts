@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https', // The protocol (e.g., 'https', 'http')
-        hostname: 'tooukmarket.wordpress.com', // The hostname of the image source
+        hostname: 'api-blog.toouk.market', // The hostname of the image source
       },
     ],
   },

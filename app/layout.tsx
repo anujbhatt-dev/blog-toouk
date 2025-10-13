@@ -31,7 +31,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased max-w-6xl mx-2 lg:mx-auto  pt-18`}
       >
         <Provider>
-        <Hero/>
          {children}
         </Provider>
       </body>

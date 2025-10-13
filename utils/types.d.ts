@@ -3,3 +3,20 @@ export type CategorySchema = {
     name: string;
     slug: string;
   };
+
+export type WPPost = {
+    id: number;
+    slug: string;
+    title: { rendered: string };
+    content: { rendered: string };
+    excerpt: { rendered: string };
+    date: string;
+    categories: number[];
+  };
+  
+export type WPCategory = {
+    id: number;
+    name: string;
+    slug: string;
+  };
+  

@@ -8,6 +8,7 @@ export default async function Home({params}:{params:Promise<{categorySlug:string
   
   return (
     <div className="min-h-screen">
+        <Hero/>
         <Categories selected={categorySlug}/>
         <ArticlesGrid/>
     </div>

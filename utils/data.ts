@@ -36,43 +36,49 @@ export const fetchCategories = async (): Promise<CategorySchema[]> => {
       id: "1",
       title: "How Tokenization Is Changing Real Estate",
       description: "Learn how blockchain is transforming property ownership.",
-      image: "https://tooukmarket.wordpress.com/wp-content/uploads/2025/10/artist-bridge.jpg",
-      category: "real-estate",
+      image: "/b1.png",
+      category: "announcements",
+      slug:"how-tokenization-is-changing-real-estate"
     },
     {
       id: "2",
       title: "DeFi Yield Strategies Explained",
       description: "Explore the most popular yield farming opportunities.",
       image: "/b2.png",
-      category: "yield-defi",
+      category: "leadership",
+      slug:"how-tokenization-is-changing-real-estate"
     },
     {
       id: "3",
       title: "Digital Art and Collectibles in 2025",
       description: "NFTs are evolving into more sophisticated asset classes.",
       image: "/b3.png",
-      category: "art-collectibles",
+      category: "announcements",
+      slug:"how-tokenization-is-changing-real-estate"
     },
     {
       id: "4",
       title: "How Regulation Shapes Token Markets",
       description: "An overview of the latest compliance trends in tokenization.",
       image: "/b4.png",
-      category: "regulation-compliance",
+      category: "leadership",
+      slug:"how-tokenization-is-changing-real-estate"
     },
     {
       id: "5",
       title: "Infrastructure for Tokenized Assets",
       description: "Inside the tech that powers real-world asset tokenization.",
       image: "/b5.png",
-      category: "technology-infrastructure",
+      category: "leadership",
+      slug:"how-tokenization-is-changing-real-estate"
     },
     {
         id: "6",
         title: "Toouk Pay : Tap to Pay",
         description: "Inside the tech that powers real-world asset tokenization.",
         image: "/b6.png",
-        category: "technology-infrastructure",
+        category: "announcements",
+        slug:"how-tokenization-is-changing-real-estate"
       },
   ];
   

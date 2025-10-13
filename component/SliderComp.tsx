@@ -19,7 +19,9 @@ export default function SliderComp() {
     autoplaySpeed: 1000
   };
   return (
-    <div className="bg-zinc-900 rounded-lg p-4 pb-8" >
+    <div className="bg-zinc-900 rounded-lg p-2 lg:p-8 lg:pb-8 my-20 " >
+      <div>
+
         <Slider {...settings}>
         <div>
                 <Image
@@ -27,8 +29,8 @@ export default function SliderComp() {
                   alt={"alt"}
                   width={160}
                   height={160}
-                  className="w-100 h-60 object-cover rounded-xl lg:float-left lg:mr-10"
-                />
+                  className="w-130 h-auto object-cover rounded-xl lg:float-left lg:mr-10"
+                  />
                 <div className="py-4 flex flex-col gap-3">
                   <span className="text-[10px] uppercase tracking-wide bg-neutral-800 mt-2 px-4 py-2 rounded-lg self-start">
                     Announcement
@@ -51,7 +53,7 @@ export default function SliderComp() {
                   width={160}
                   height={160}
                   className="w-100 h-60 object-cover rounded-xl lg:float-left lg:mr-10"
-                />
+                  />
                 <div className="py-4 flex flex-col gap-3">
                   <span className="text-[10px] uppercase tracking-wide bg-neutral-800 mt-2 px-4 py-2 rounded-lg self-start">
                     Announcement
@@ -68,6 +70,7 @@ export default function SliderComp() {
                 </div>
           </div>
         </Slider>
+      </div>
 
     </div>
   )
