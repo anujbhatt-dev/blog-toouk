@@ -1,6 +1,7 @@
 "use client"
 import React, { ReactNode } from 'react'
 import TopBar from './Topbar'
+import Footer from './Footer'
 
 export default function Provider({children}:{children:ReactNode}) {
   return (
@@ -13,6 +14,7 @@ export default function Provider({children}:{children:ReactNode}) {
               </svg>
             <TopBar/>
             {children}
+            <Footer/>
     </div>
   )
 }
