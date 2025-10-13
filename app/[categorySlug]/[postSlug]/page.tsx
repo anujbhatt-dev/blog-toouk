@@ -10,7 +10,7 @@ export default async function Home({params}:{params:Promise<{postSlug:string}>})
     <div className="min-h-screen max-w-3xl lg:mx-auto mx-2 leading-relaxed">
         {fetchPostdata && 
             <div>
-                <h1 className="text-5xl my-5 font-semibold">
+                <h1 className="text-5xl my-5 font-semibold leading-16">
                 {fetchPostdata.data[0].title.rendered}
                 </h1>
                 <Image 
@@ -19,7 +19,7 @@ export default async function Home({params}:{params:Promise<{postSlug:string}>})
                     width={1920}
                     height={1000}
                     alt=""
-                    className="w-full h-auto my-5 rounded-lg"
+                    className="w-full h-auto my-10 rounded-lg"
                 />
                 <div className="my-5 flex justify-between items-center">
 

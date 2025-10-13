@@ -34,7 +34,6 @@ export const fetchCategories = async (): Promise<CategorySchema[]> => {
 
 
 export const fetchPosts = async (): Promise<PostSchema[]> => {
-  console.log("fetching posts");
   
   try {
     const res = await axios.get<PostSchema[]>(POSTS_ENDPOINT);
@@ -62,22 +61,7 @@ export const fetchPosts = async (): Promise<PostSchema[]> => {
 
 
   export  const demoArticles = [
-    {
-      id: "1",
-      title: "How Tokenization Is Changing Real Estate",
-      description: "Learn how blockchain is transforming property ownership.",
-      image: "/b1.png",
-      category: "announcements",
-      slug:"how-tokenization-is-changing-real-estate"
-    },
-    {
-      id: "2",
-      title: "DeFi Yield Strategies Explained",
-      description: "Explore the most popular yield farming opportunities.",
-      image: "/b2.png",
-      category: "leadership",
-      slug:"how-tokenization-is-changing-real-estate"
-    },
+    
     {
       id: "3",
       title: "Digital Art and Collectibles in 2025",
