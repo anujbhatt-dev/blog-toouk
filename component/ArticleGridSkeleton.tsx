@@ -3,7 +3,7 @@ import React from "react";
 
 export default function ArticlesGridSkeleton() {
   // Generate an array of placeholder items (9 cards)
-  const placeholders = Array.from({ length: 3 });
+  const placeholders = Array.from({ length: 4 });
 
   return (<>
     <div className="w-full my-10">

@@ -21,6 +21,8 @@ export default function Categories() {
       const allCategory: CategorySchema = { id: 0, name: "All", slug: "all" };
       setData([allCategory, ...res]);
       setLoading(false);
+      if(pathname=="/") setCategory("all")
+      else setCategory(pathname.split("/")[1])
     };
     fetchData();
   }, [setData]);

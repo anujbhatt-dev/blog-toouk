@@ -1,27 +1,35 @@
 "use client";
-import React from "react";
+import React, { ReactNode } from "react";
 import {
   IconHome,
   IconAB,
   IconArtboard,
-  IconBallFootball,
   IconClothesRack,
   Icon360,
-  IconLaurelWreath,
   IconMenu2,
   IconX,
-  IconMusic,
-  IconCalendarEvent,
-  IconLine,
-  IconBook,
-  IconNews,
-  IconList,
-  IconArticle,
+  IconSpeakerphone,
+  IconUsersGroup,
+  IconRocket,
+  IconCpu,
+  IconHome2,
+  
 } from "@tabler/icons-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import useCategoryState from "@/store/categoryStore";
+import { CategorySchema } from "@/utils/types";
+import Link from "next/link";
+
+const icons = new Map<string,ReactNode>()
+icons.set("all",<IconHome2/>)
+icons.set("announcements",<IconSpeakerphone/>)
+icons.set("community",<IconUsersGroup/>)
+icons.set("leadership",<IconRocket/>)
+icons.set("technology",<IconCpu/>)
 
 export default function Sidebar() {
+  const { data } = useCategoryState();
   // Global toggle: when false, the sidebar is completely hidden (all breakpoints)
   const [enabled, setEnabled] = React.useState(true);
 
@@ -37,13 +45,6 @@ export default function Sidebar() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  const menuItems = [
-    { name: "All", icon: <IconHome size={22} />, href: "/" },
-    { name: "Announcement", icon: <Icon360 size={22} />, href: "/anouncement" },
-    { name: "Community", icon: <IconClothesRack size={22} />, href: "/community" },
-    { name: "Leadership", icon: <IconAB size={22} />, href: "/leadership" },
-    { name: "Technology", icon: <IconArtboard size={22} />, href: "/technology" },
-  ];
 
   // If the sidebar is disabled, render only the hamburger (so users can enable again)
   const showSidebar = enabled;
@@ -108,7 +109,7 @@ export default function Sidebar() {
             >
               <Header />
               <div className="lg:hidden">
-                <Nav menuItems={menuItems} onItemClick={() => setMobileOpen(false)} />
+                <Nav menuItems={data} onItemClick={() => setMobileOpen(false)} />
               </div>
             </motion.aside>
           </>
@@ -125,7 +126,7 @@ export default function Sidebar() {
         >
           <Header />
           <hr className="border-b border-white/10 -mt-[1px]"/>
-          <Nav menuItems={menuItems} />
+          <Nav menuItems={data} />
         </motion.aside>
       )}
       
@@ -182,28 +183,33 @@ function Header() {
 
 function Nav({
   menuItems,
-  onItemClick,
+  onItemClick
 }: {
-  menuItems: { name: string; icon: React.ReactNode; href: string }[];
+  menuItems: CategorySchema[];
   onItemClick?: () => void;
 }) {
+  const { selected, setCategory } = useCategoryState();
+  const clickHandler= (slug:string)=>{
+    setCategory(slug)
+    if(onItemClick)
+      onItemClick()
+  }
   return (
     <nav className="my-6 flex flex-col space-y-2 px-2">
       {menuItems.map((item, idx) => (
-        <motion.a
+        <Link
           key={idx}
-          href={item.href}
-          whileHover={{ x: 6 }}
-          onClick={onItemClick}
-          className="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
+          href={item.slug=="all"?"/":"/"+item.slug}
+          onClick={()=>clickHandler(item.slug)}
+          className={`${selected==item.slug?"bg-zinc-900":""} flex items-center gap-3 px-3 py-2 rounded-lg text-gray-200 hover:bg-zinc-800 transition-colors`}
         >
-          <span className="flex-shrink-0">{item.icon}</span>
+          <span className="flex-shrink-0">{icons.get(item.slug)}</span>
           {/* Label only visible when the desktop sidebar expands; always visible in mobile drawer */}
           <span className="hidden lg:opacity-0 lg:group-hover:opacity-100 lg:inline transition-opacity duration-200 whitespace-nowrap">
             {item.name}
           </span>
           <span className="lg:hidden inline">{item.name}</span>
-        </motion.a>
+        </Link>
       ))}
     </nav>
   );

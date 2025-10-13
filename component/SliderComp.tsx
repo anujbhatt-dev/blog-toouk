@@ -18,10 +18,10 @@ export default function SliderComp() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows:false,
-    autoPlay:true,
-    autoplaySpeed: 1000,
-    useCss:true
+    arrows: false,
+    autoplay: true,         // ✅ correct key name
+    autoplaySpeed: 3000,    // e.g., 3 seconds
+    cssEase: "linear"       // optional: smoother animation
   };
 
   const [featured,setFeatured] = useState<PostSchema[] | null>(null)
@@ -44,10 +44,10 @@ export default function SliderComp() {
   },[])
 
   return (
-    <div className="rounded-lg my-10" >
+    <div className="rounded-lg my-10 overflow-hidden" >
       {
         loading && <div>
-          <div className="h-[60vh]  lg:h-[50vh]">
+          <div className="h-[30rem]  lg:h-[20rem]">
             <div className="flex flex-col lg:flex-row animate-pulse">
               <div className="w-full lg:w-2/3">
                 <div className="w-full h-[150px] lg:h-[250px] bg-neutral-800 rounded-xl"></div>
@@ -68,11 +68,12 @@ export default function SliderComp() {
         </div>
       }  
       {!loading &&
-      <div className="h-[60vh] lg:h-[50vh]">
+      <div className="h-[30rem] lg:h-[20rem]">
           <Slider {...settings}>
         {featured?.slice(0,4).map((article)=>{
           return <Link 
               href={`/${article.category}/${article.slug}`}
+              className="n"
           >
                   <Image
                     priority
@@ -80,10 +81,10 @@ export default function SliderComp() {
                     alt={"alt"}
                     width={1920}
                     height={1000}
-                    className="w-130 h-auto object-cover rounded-xl lg:float-left lg:mr-10 "
+                    className="h-[10rem] lg:h-[15rem] w-auto object-cover rounded-xl lg:float-left lg:mr-4 "
                     />
-                  <div className="px-4 flex flex-col gap-3">
-                    <span className="text-[10px] uppercase tracking-wide bg-neutral-800 mt-2 px-4 py-2 rounded-lg self-start text-white font-semibold">
+                  <div className=" pt-8 lg:pt-0 flex flex-col gap-3">
+                    <span className="text-[10px] uppercase tracking-wide bg-neutral-800 px-4 py-2 rounded-lg self-start text-white font-semibold">
                       {article.category}
                     </span>
                     <h3 className="text-white font-semibold text-sm lg:text-3xl">
