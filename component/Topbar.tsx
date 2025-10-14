@@ -11,8 +11,8 @@ import { IconSearch } from "@tabler/icons-react";
 export default function TopBar() {
   const router = useRouter()
   return (
-    <header className="fixed top-0 left-0 right-0 w-full dark:bg-[#020826] bg-white shadow-md py-2 px-6 lg:px-12 lg:pr-6 flex items-center justify-end lg:justify-between dark:border-b border-neutral-800/50 z-50 h-16 backdrop-blur-lg lg:pl-20">
-        <nav className="flex justify-center items-center gap-6 text-sm  dark:text-neutral-400 font-semibold">
+    <header className="fixed top-0 left-0 right-0 w-full dark:bg-[#020826] bg-white shadow-md py-2 px-2 lg:px-12 lg:pr-6 flex gap-4 items-center justify-end lg:justify-between dark:border-b border-neutral-800/50 z-50 h-16 backdrop-blur-lg lg:pl-20">
+        <nav className="flex justify-center items-center gap-3 lg:gap-6 text-sm  dark:text-neutral-400 font-semibold">
             <Link href="https://toouk.market" target="blank" className="transition-all duration-150 dark:text-blue-500 hover:text-blue-400 dark:hover:text-blue-400">
                 Marketplace
             </Link>
@@ -26,12 +26,12 @@ export default function TopBar() {
                 Listing
             </Link>
         </nav>
-        <div className="flex items-center bg-neutral-900 text-neutral-300 rounded-lg px-4 py-2 w-full max-w-md">
+        <div className="flex items-center bg-neutral-900 text-neutral-300 rounded-lg px-4 py-2 lg:w-full max-w-md">
         <IconSearch size={18} className="text-neutral-500" />
         <input
             type="text"
             placeholder="Search..."
-            className="bg-transparent outline-none ml-3 w-full placeholder-neutral-500 text-sm"
+            className="hidden lg:flex bg-transparent outline-none ml-3 w-full placeholder-neutral-500 text-sm"
         />
         </div>
     </header>
