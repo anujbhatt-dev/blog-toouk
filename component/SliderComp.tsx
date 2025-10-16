@@ -44,7 +44,7 @@ export default function SliderComp() {
   },[])
 
   return (
-    <div className="rounded-lg my-10 overflow-hidden" >
+    <div className="rounded-lg my-10 overflow-hidden w-full" >
       {
         loading && <div>
           <div className="h-[30rem]  lg:h-[20rem]">

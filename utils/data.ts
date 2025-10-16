@@ -13,7 +13,6 @@ const CATEGORY_ENDPOINT =
   `${process.env.NEXT_PUBLIC_API_URL}/posts`;  
 
 export const fetchCategories = async (): Promise<CategorySchema[]> => {
-  console.log("fetching categories");
   try {
     const res = await axios.get<CategorySchema[]>(CATEGORY_ENDPOINT);
     // Axios automatically infers type from <CategorySchema[]>

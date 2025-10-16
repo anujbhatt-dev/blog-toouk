@@ -26,7 +26,7 @@ export default function Footer() {
         <div className="flex flex-col gap-2">
           <h4 className="text-white font-semibold mb-2">Quick Links</h4>
           {
-            data.slice(1).map((item)=> <Link href={item.slug} className="hover:text-white transition">{item.name}</Link>)
+            data.slice(1).map((item,i)=> <Link key={"footer-"+item.slug} href={item.slug} className="hover:text-white transition">{item.name}</Link>)
           }        
         </div>
 

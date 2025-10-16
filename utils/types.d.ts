@@ -30,4 +30,13 @@ export type WPCategory = {
     name: string;
     slug: string;
   };
+
+
+  export interface User {
+    id: string;
+    email: string;
+    username: string;
+    role: Role;
+    isActive: boolean;
+  }
   

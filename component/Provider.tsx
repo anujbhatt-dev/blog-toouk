@@ -3,6 +3,7 @@ import React, { ReactNode } from 'react'
 import TopBar from './Topbar'
 import Footer from './Footer'
 import Sidebar from './Sidebar'
+import SearchPopup from './SearchPopup'
 
 export default function Provider({children}:{children:ReactNode}) {
   return (
@@ -17,6 +18,7 @@ export default function Provider({children}:{children:ReactNode}) {
               <div className='lg:ml-16'>
               <TopBar/>
               {children}
+              <SearchPopup/>
               <Footer/>
               </div>  
              <Sidebar />
