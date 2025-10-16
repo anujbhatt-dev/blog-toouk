@@ -1,6 +1,6 @@
-import ArticlesGrid from "@/component/ArticlesGrid";
-import Categories from "@/component/Categories";
-import Hero from "@/component/Hero";
+import ArticlesGrid from "@/components/ArticlesGrid";
+import Categories from "@/components/Categories";
+import Hero from "@/components/Hero";
 import { fetchPosts } from "@/utils/data";
 
 export default async function Home({params}:{params:Promise<{categorySlug:string}>}) {
